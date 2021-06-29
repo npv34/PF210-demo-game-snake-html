@@ -8,6 +8,7 @@ let lenghtSnake = 1;
 let moveKey = 'right';
 let speed = 200;
 let status = false;
+let start = false;
 
 let positionFood = [
     [0, 4],
@@ -40,8 +41,6 @@ function drawFood(x, y) {
     document.getElementById(x +'-'+y).style.backgroundColor = 'blue'
 }
 
-
-drawFood(positionFood[0][0], positionFood[0][1]);
 
 function eat() {
     if(positionFood[countFood][0] == x && positionFood[countFood][1] == y) {
@@ -128,6 +127,9 @@ function resetSnake() {
 }
 
 function play() {
+    if(!start) {
+        return;
+    }
     clearSnake(x, y);
     switch(moveKey) {
         case 'right':
@@ -152,3 +154,10 @@ function play() {
 
 let game = setInterval(play, speed);
 
+function startGame() {
+    start = true;
+}
+
+function stopGame() {
+    start = false;
+}
